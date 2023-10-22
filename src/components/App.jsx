@@ -42,7 +42,7 @@ const filteredData = this.getFilterData()
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAddNewUser={this.handleAddNewUser}/>
+      <ContactForm onAddNewUser={this.handleAddNewUser} contacts={this.state.contacts} />
 
       <h2>Contacts</h2>
       <SearchUser  setFilter={this.handleChangeFilter}/>

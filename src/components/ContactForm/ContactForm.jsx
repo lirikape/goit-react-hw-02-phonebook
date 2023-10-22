@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import React from 'react';
 import styles from './ContactForm.module.css';
 
@@ -27,7 +27,16 @@ export class ContactForm extends React.Component {
         return
       }
 
-    this.props.onAddNewUser({id: nanoid, name, number})
+      const isNameExists = this.props.contacts.some(
+        (contact) => contact.name === name
+      );
+  
+      if (isNameExists) {
+        alert(`Контакт з іменем "${name}" вже існує в книзі.`);
+        return;
+      }    
+
+    this.props.onAddNewUser({id: crypto.randomUUID(), name, number})
     this.setState({ name: '', number: '' });
   }
 
@@ -64,4 +73,5 @@ export class ContactForm extends React.Component {
 
 ContactForm.propTypes = {
   onAddNewUser: PropTypes.func.isRequired,
+  
 };
